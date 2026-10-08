@@ -1,0 +1,313 @@
+@charset "UTF-8";
+@import "https://unpkg.com/ress/dist/ress.min.css";
+ 
+* {
+  box-sizing: border-box;
+}
+ 
+/*===== 全体の基本設定 =====*/
+ 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+ 
+body {
+  background-color: #020817;
+  overflow-x: hidden;
+}
+ 
+/*===== 中央のレイアウト =====*/
+ 
+#wrapper {
+  position: relative;
+  z-index: 1;
+ 
+  width: 100%;
+  min-height: 100%;
+ 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+  text-align: center;
+ 
+  padding: 30px;
+ 
+  /* 透明感のある青白い文字 */
+  color: #e8f8ff;
+ 
+  /* 文字を柔らかく発光 */
+  text-shadow:
+    0 0 5px rgba(255, 255, 255, 0.8),
+    0 0 15px rgba(125, 211, 252, 0.7),
+    0 0 35px rgba(0, 140, 255, 0.5);
+}
+ 
+/*===== メインタイトル =====*/
+ 
+#wrapper h1 {
+  font-family:
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif;
+ 
+  font-size: clamp(36px, 7vw, 85px);
+  font-weight: 600;
+ 
+  letter-spacing: 0.15em;
+  line-height: 1.5;
+ 
+  color: #f0fbff;
+ 
+  /* 氷のような青いネオン */
+  text-shadow:
+    0 0 4px #ffffff,
+    0 0 10px #b8eaff,
+    0 0 20px #68cfff,
+    0 0 40px rgba(0, 153, 255, 0.7),
+    0 0 70px rgba(0, 102, 255, 0.4);
+ 
+  /* 浮遊と発光 */
+  animation:
+    titleFloat 7s ease-in-out infinite,
+    neonBreath 5s ease-in-out infinite alternate;
+}
+ 
+/*===== サブタイトル =====*/
+ 
+#wrapper p {
+  margin-top: 22px;
+ 
+  font-size: clamp(12px, 1.8vw, 18px);
+  font-weight: 300;
+ 
+  letter-spacing: 0.3em;
+  line-height: 2;
+ 
+  color: #b8dfff;
+ 
+  text-shadow:
+    0 0 8px rgba(125, 211, 252, 0.6),
+    0 0 25px rgba(0, 119, 255, 0.3);
+ 
+  animation: subtitleFade 5s ease-in-out infinite alternate;
+}
+ 
+/*===== タイトルがゆっくり浮遊 =====*/
+ 
+@keyframes titleFloat {
+  0% {
+    transform: translateY(0);
+  }
+ 
+  50% {
+    transform: translateY(-9px);
+  }
+ 
+  100% {
+    transform: translateY(0);
+  }
+}
+ 
+/*===== ネオンが呼吸するように発光 =====*/
+ 
+@keyframes neonBreath {
+  0% {
+    text-shadow:
+      0 0 4px #ffffff,
+      0 0 10px #b8eaff,
+      0 0 20px #68cfff,
+      0 0 35px rgba(0, 153, 255, 0.5);
+  }
+ 
+  100% {
+    text-shadow:
+      0 0 6px #ffffff,
+      0 0 15px #c9f2ff,
+      0 0 30px #55caff,
+      0 0 60px rgba(0, 153, 255, 0.8),
+      0 0 100px rgba(0, 102, 255, 0.4);
+  }
+}
+ 
+/*===== サブタイトルの明滅 =====*/
+ 
+@keyframes subtitleFade {
+  0% {
+    opacity: 0.65;
+  }
+ 
+  100% {
+    opacity: 1;
+  }
+}
+ 
+/*===== particles.js 背景 =====*/
+ 
+#particles-js {
+  position: fixed;
+  z-index: -1;
+ 
+  top: 0;
+  left: 0;
+ 
+  width: 100%;
+  height: 100%;
+ 
+  overflow: hidden;
+ 
+  /* 深い群青の夜空 */
+  background-color: #020817;
+ 
+  background-image:
+ 
+    /* 中央の青い光 */
+    radial-gradient(
+      ellipse at 50% 55%,
+      rgba(20, 110, 210, 0.22) 0%,
+      rgba(10, 40, 110, 0.1) 35%,
+      transparent 70%
+    ),
+ 
+    /* 左上の青紫の光 */
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(90, 65, 180, 0.16) 0%,
+      transparent 55%
+    ),
+ 
+    /* 右下の水色の光 */
+    radial-gradient(
+      ellipse at 85% 85%,
+      rgba(0, 160, 220, 0.14) 0%,
+      transparent 50%
+    ),
+ 
+    /* 夜空のグラデーション */
+    linear-gradient(
+      160deg,
+      #010511 0%,
+      #030b25 35%,
+      #071a3a 65%,
+      #020817 100%
+    );
+ 
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+ 
+/*===== 青い霧のような光 =====*/
+ 
+#particles-js::before {
+  content: "";
+ 
+  position: absolute;
+ 
+  width: 75vw;
+  height: 75vw;
+ 
+  max-width: 900px;
+  max-height: 900px;
+ 
+  top: 50%;
+  left: 50%;
+ 
+  transform: translate(-50%, -50%);
+ 
+  background: radial-gradient(
+    circle,
+    rgba(0, 140, 255, 0.13) 0%,
+    rgba(50, 100, 220, 0.06) 35%,
+    transparent 70%
+  );
+ 
+  filter: blur(35px);
+ 
+  pointer-events: none;
+ 
+  animation: mistGlow 10s ease-in-out infinite alternate;
+}
+ 
+/*===== 青い霧がゆっくり変化 =====*/
+ 
+@keyframes mistGlow {
+  0% {
+    opacity: 0.45;
+    transform:
+      translate(-50%, -50%)
+      scale(0.9);
+  }
+ 
+  100% {
+    opacity: 0.9;
+    transform:
+      translate(-50%, -50%)
+      scale(1.2);
+  }
+}
+ 
+/*===== 画面周辺を暗くする =====*/
+ 
+#particles-js::after {
+  content: "";
+ 
+  position: absolute;
+  inset: 0;
+ 
+  background: radial-gradient(
+    ellipse at center,
+    transparent 25%,
+    rgba(0, 3, 18, 0.25) 65%,
+    rgba(0, 2, 12, 0.65) 100%
+  );
+ 
+  pointer-events: none;
+}
+ 
+/*===== 雨粒の描画を最前面へ =====*/
+ 
+#particles-js canvas {
+  position: relative;
+  z-index: 1;
+ 
+  display: block;
+}
+ 
+/*===== スマートフォン対応 =====*/
+ 
+@media screen and (max-width: 768px) {
+ 
+  #wrapper {
+    padding: 20px;
+  }
+ 
+  #wrapper h1 {
+    font-size: clamp(30px, 9vw, 55px);
+    letter-spacing: 0.08em;
+  }
+ 
+  #wrapper p {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+  }
+ 
+  #particles-js::before {
+    width: 100vw;
+    height: 100vw;
+  }
+}
+ 
+/*===== 動きを減らす設定への対応 =====*/
+ 
+@media (prefers-reduced-motion: reduce) {
+ 
+  #wrapper h1,
+  #wrapper p,
+  #particles-js::before {
+    animation: none;
+  }
+}
